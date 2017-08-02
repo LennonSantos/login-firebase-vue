@@ -1,4 +1,4 @@
-# login-firebase-vuejs
+# Login with firebase and vuejs
 
 > A Vue.js project
 
@@ -16,3 +16,8 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Steps
+
+- Rename `src/components/firebase.example.js` to `firebase.js`
+- In `firebase.js` add your firebase settings
