@@ -1,3 +1,5 @@
+DEMO https://loginfirebasevue.firebaseapp.com/
+
 # Login with firebase and vuejs
 
 > A Vue.js project
