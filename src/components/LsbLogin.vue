@@ -1,13 +1,12 @@
 <template>
   <div>
-      <h1>Login with firebase and vuejs</h1>
-      <p>* Enable popup</p>
-      <button @click="login" class="btn btn-primary pull-center" v-if="!logged">Login with Gmail</button>
-      <button @click="logout" class="btn btn-danger pull-center" v-if="logged">Logout</button>
-      <hr>
-      <h2>{{userData.displayName}}</h2>
-      <img v-bind:src="userData.photoURL" v-if="logged" alt="imagem profile">
-      <pre>{{userData}}</pre>
+      <div class="row">
+        <div class="col-md-12">
+          <button @click="login" class="btn btn-primary pull-left" v-if="!logged">Login with Gmail</button>
+          <button @click="logout" class="btn btn-danger pull-right" v-if="logged">Logout</button> 
+        </div>
+      </div>
+      <br>
   </div>
 </template>
 <script>
@@ -16,40 +15,31 @@ import {auth} from './firebase';
 
 export default {
   data () {
-    return {   
-      userData: [],
-      userError: [],  
-      logged: false
+    return {    
     }
   }, 
   methods: {
     login: function() {
-      auth.signInWithPopup(provider).then(result => {
-        this.userData = result.user.providerData[0];           
+      auth.signInWithPopup(provider).then(result => {   
+        this.$store.commit('update_user', result.user.providerData[0]);       
       }).catch(error => {
-        this.userError = error.message;
+        this.$store.commit('update_error', error.message);
       });
     },
     logout: function() {
       auth.signOut().then( 
       () => { 
-        this.logged = false;
-       }, 
+        // logout success
+      }, 
       error => {
-        this.userError = error;
+        this.$store.commit('update_error', error);
       });
     }
   }, 
-  created: function() {
-    auth.onAuthStateChanged( user => {
-      if (user) {
-        this.userData = user.providerData[0];
-        this.logged = true;
-      } else {
-        this.userData = [];
-        this.logged = false;        
-      }
-    });
+  computed: {
+    logged () {
+      return this.$store.getters.isLogged
+    }
   }
 }
 </script>

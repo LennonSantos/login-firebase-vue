@@ -3,10 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>login-firebase-vuejs</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
     <div id="app">
-      <lsb-login></lsb-login>
+      <div class="jumbotron text-center">
+        <h1>Login with firebase and vuejs</h1>
+      </div>
+      <div class="container">
+        <p v-if="this.$store.getters.isLogged" class="alert alert-success">Você esta logado!</p>
+        <p v-else class="alert alert-info">Você não esta logado! </p>
+        <p class="alert alert-danger" v-if="this.$store.getters.getError.length">{{this.$store.getters.getError}}</p>
+        <lsb-login></lsb-login>
+        <lsb-profile></lsb-profile>
+        
+      </div><!-- .container -->
     </div>
     <script src="/dist/build.js"></script>
   </body>
