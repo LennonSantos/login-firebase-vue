@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>login-firebase-vuejs</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
@@ -9,13 +10,26 @@
     <div id="app">
       <div class="jumbotron text-center">
         <h1>Login with firebase and vuejs</h1>
+        <lsb-login></lsb-login>
       </div>
       <div class="container">
-        <p v-if="this.$store.getters.isLogged" class="alert alert-success">Você esta logado!</p>
-        <p v-else class="alert alert-info">Você não esta logado! </p>
-        <p class="alert alert-danger" v-if="this.$store.getters.getError.length">{{this.$store.getters.getError}}</p>
-        <lsb-login></lsb-login>
-        <lsb-profile></lsb-profile>
+        <div class="row">
+          <div class="col-md-12">
+            <p v-if="this.$store.getters.isLogged" class="alert alert-success">Você esta logado!</p>
+            <p v-else class="alert alert-info">Você não esta logado! </p>
+            <p class="alert alert-danger" v-if="this.$store.getters.getError.length">{{this.$store.getters.getError}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <lsb-form></lsb-form>
+          </div>
+          <div class="col-md-3">
+             <lsb-profile></lsb-profile>
+          </div>
+        </div>
+        <lsb-gastos></lsb-gastos>
+       
         
       </div><!-- .container -->
     </div>

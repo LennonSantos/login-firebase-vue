@@ -1,12 +1,7 @@
 <template>
   <div>
-      <div class="row">
-        <div class="col-md-12">
-          <button @click="login" class="btn btn-primary pull-left" v-if="!logged">Login with Gmail</button>
-          <button @click="logout" class="btn btn-danger pull-right" v-if="logged">Logout</button> 
-        </div>
-      </div>
-      <br>
+      <button @click="login" class="btn btn-primary" v-if="!logged">Login with Gmail</button>
+      <button @click="logout" class="btn btn-danger" v-if="logged">Logout</button>
   </div>
 </template>
 <script>
